@@ -1,0 +1,15 @@
+# target path in your repo: .gitignore (repo root)
+
+# Never commit real secrets
+secrets/
+
+# Local Docker volumes if ever bind-mounted to disk
+data/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor junk
+.vscode/
+.idea/

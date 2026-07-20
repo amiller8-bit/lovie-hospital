@@ -1,0 +1,74 @@
+# target path in your repo: docker-compose.yml (repo root)
+#
+# Local stack for Lovie Hospital, Phase 0-1.
+# Brings up:
+#   - Ignition Gateway (Maker Edition — free for hobby/home use, requires a free license key)
+#   - Postgres (patient/visit/vitals data)
+#   - Mosquitto (MQTT broker — not needed until Phase 5, included now so it's one less thing later)
+#
+# Before running:
+#   1. Get a free Maker Edition license key: https://inductiveautomation.com/ignition/maker-edition
+#      (register, then find your 8-character key + activation token in your IA account)
+#   2. Create a file `secrets/ignition_license_key.txt` containing just the license key
+#   3. Create a file `secrets/ignition_activation_token.txt` containing just the activation token
+#   4. Create a file `secrets/gateway_admin_password.txt` containing a password you choose
+#      (these three files should NOT be committed — see .gitignore)
+#
+# Then: docker compose up -d
+# Ignition Gateway web UI: http://localhost:9088
+---
+services:
+  gateway:
+    # Check https://hub.docker.com/r/inductiveautomation/ignition/tags for the current latest 8.1.x tag
+    # and pin to it explicitly (avoid `latest` so upgrades are a deliberate choice, not a surprise restart).
+    image: inductiveautomation/ignition:8.1.44
+    ports:
+      - "9088:8088"   # Gateway HTTP
+      - "9043:8043"   # Gateway HTTPS
+    volumes:
+      - gw-data:/usr/local/bin/ignition/data
+    environment:
+      - ACCEPT_IGNITION_EULA=Y
+      - GATEWAY_ADMIN_USERNAME=admin
+      - GATEWAY_ADMIN_PASSWORD_FILE=/run/secrets/gateway_admin_password
+      - IGNITION_EDITION=maker
+      - IGNITION_LICENSE_KEY_FILE=/run/secrets/ignition_license_key
+      - IGNITION_ACTIVATION_TOKEN_FILE=/run/secrets/ignition_activation_token
+      - TZ=America/Chicago
+    secrets:
+      - gateway_admin_password
+      - ignition_license_key
+      - ignition_activation_token
+    command: >
+      -n lovie-hospital-gateway
+
+  postgres:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=lovie_hospital
+      - POSTGRES_USER=lovie
+      - POSTGRES_PASSWORD=lovie_dev_password
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+secrets:
+  gateway_admin_password:
+    file: secrets/gateway_admin_password.txt
+  ignition_license_key:
+    file: secrets/ignition_license_key.txt
+  ignition_activation_token:
+    file: secrets/ignition_activation_token.txt
+
+volumes:
+  gw-data:
+  pg-data:
