@@ -19,15 +19,18 @@
 ---
 services:
   gateway:
-    # Check https://hub.docker.com/r/inductiveautomation/ignition/tags for the current latest 8.1.x tag
+    # Check https://hub.docker.com/r/inductiveautomation/ignition/tags for the current latest tag
     # and pin to it explicitly (avoid `latest` so upgrades are a deliberate choice, not a surprise restart).
     image: inductiveautomation/ignition:8.3.8
     ports:
       - "9088:8088"   # Gateway HTTP
       - "9043:8043"   # Gateway HTTPS
     volumes:
-      volumes:
       - gw-data:/usr/local/bin/ignition/data
+      # Curated version control (8.3's file-system-based config): these two
+      # subfolders are bind-mounted from the repo, so Designer writes land
+      # directly in files git can see. Everything else (certs, caches, logs,
+      # license state) stays on the gw-data volume, untracked.
       - ./ignition/projects:/usr/local/bin/ignition/data/projects
       - ./ignition/config:/usr/local/bin/ignition/data/config
     environment:
