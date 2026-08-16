@@ -6,6 +6,17 @@ secrets/
 # Local Docker volumes if ever bind-mounted to disk
 data/
 
+# Ignition project/config files that are environment-specific, generated,
+# or binary — not meaningful to track in git.
+ignition/config/local/
+ignition/config/resources/local/
+ignition/config/**/keystore/
+ignition/config/**/certificates/
+ignition/projects/**/.resources/
+ignition/projects/conversion-report.txt
+ignition/**/migration-log-*.md
+ignition/**/*.digest.json
+
 # OS junk
 .DS_Store
 Thumbs.db
@@ -13,3 +24,5 @@ Thumbs.db
 # Editor junk
 .vscode/
 .idea/
+
+

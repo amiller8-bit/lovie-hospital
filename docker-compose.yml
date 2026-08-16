@@ -26,7 +26,10 @@ services:
       - "9088:8088"   # Gateway HTTP
       - "9043:8043"   # Gateway HTTPS
     volumes:
+      volumes:
       - gw-data:/usr/local/bin/ignition/data
+      - ./ignition/projects:/usr/local/bin/ignition/data/projects
+      - ./ignition/config:/usr/local/bin/ignition/data/config
     environment:
       - ACCEPT_IGNITION_EULA=Y
       - GATEWAY_ADMIN_USERNAME=admin

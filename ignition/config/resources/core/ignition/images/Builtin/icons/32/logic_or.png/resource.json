@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "logic_or.png"
+  ],
+  "attributes": {
+    "width": 32,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "import",
+      "timestamp": "2026-07-31T21:04:28Z"
+    },
+    "size": 1153,
+    "lastModificationSignature": "85092a4d8b322ef75c250e3c2dd1acacfa316476d12f328a6643c8e4c2d783fd",
+    "height": 32
+  }
+}

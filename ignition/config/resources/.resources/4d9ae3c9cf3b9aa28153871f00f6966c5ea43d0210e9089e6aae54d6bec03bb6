@@ -1,0 +1,36 @@
+{
+  "connectURL": "jdbc:postgresql://postgres:5432/lovie_hospital",
+  "connectionProps": "",
+  "connectionResetParams": "",
+  "defaultTransactionLevel": "DEFAULT",
+  "driver": "PostgreSQL",
+  "evictionRate": -1,
+  "evictionTests": 3,
+  "evictionTime": 1800000,
+  "failoverMode": "STANDARD",
+  "failoverProfile": "",
+  "includeSchemaInTableName": false,
+  "password": {
+    "data": {
+      "ciphertext": "D_yhvFIxj4sPbVD2P6er2fnijZA",
+      "encrypted_key": "Mkk35S4R9QMcX_jl1K5gm8rm_W_ZJVVCpT8a0jFs3owAvkxON5SZpQ",
+      "iv": "OxuhoA5sn9yrwfF_",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg1NTU1MDY2LCJ6aXAiOiJERUYifQ",
+      "tag": "-LxlLAWm7ORUIE2yKIuGYg"
+    },
+    "type": "Embedded"
+  },
+  "poolInitSize": 0,
+  "poolMaxActive": 8,
+  "poolMaxIdle": 8,
+  "poolMaxWait": 5000,
+  "poolMinIdle": 0,
+  "slowQueryLogThreshold": 60000,
+  "testOnBorrow": true,
+  "testOnReturn": false,
+  "testWhileIdle": false,
+  "translator": "POSTGRES",
+  "username": "lovie",
+  "validationQuery": "SELECT 1",
+  "validationSleepTime": 10000
+}
