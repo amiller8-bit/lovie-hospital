@@ -9,6 +9,7 @@
   "disable3DPipeline": true,
   "disableDirectDraw": false,
   "enableTagReferenceStore": true,
+  "gatewayScriptingProject": "LovieHospital",
   "homepageNotes": "Lovie Hospital for Natalie",
   "homepageUrl": "/app",
   "multicastEnabled": true,

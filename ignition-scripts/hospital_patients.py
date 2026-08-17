@@ -80,13 +80,17 @@ def get_visit_by_qr(qr_token):
 	}
 
 
-def log_vitals(visit_id, temperature_f, heart_rate_bpm, mood, notes=""):
-	"""Records one vitals reading for a visit. Call this from the mood buttons / vitals screen."""
-	query = """
-		INSERT INTO vitals (visit_id, temperature_f, heart_rate_bpm, mood, notes)
-		VALUES (?, ?, ?, ?, ?)
+def log_vitals(visit_id, temperature_f, heart_rate_bpm, mood_score):
 	"""
-	system.db.runPrepUpdate(query, [visit_id, temperature_f, heart_rate_bpm, mood, notes], DB_CONNECTION)
+	Records one vitals reading for a visit. mood_score is an integer 1-10
+	(1 = very sad face, 10 = very happy face) -- wire this to the face-button
+	component's value, don't let it take free text.
+	"""
+	query = """
+		INSERT INTO vitals (visit_id, temperature_f, heart_rate_bpm, mood_score)
+		VALUES (?, ?, ?, ?)
+	"""
+	system.db.runPrepUpdate(query, [visit_id, temperature_f, heart_rate_bpm, mood_score], DB_CONNECTION)
 
 	# Bumping status to in_treatment on first vitals reading, if not already there
 	update_status = """
@@ -94,6 +98,57 @@ def log_vitals(visit_id, temperature_f, heart_rate_bpm, mood, notes=""):
 		WHERE visit_id = ? AND status = 'checked_in'
 	"""
 	system.db.runPrepUpdate(update_status, [visit_id], DB_CONNECTION)
+
+
+def get_mood_history(visit_id):
+	"""
+	Returns every mood_score reading for a visit, oldest first -- this is what
+	feeds a running mood-over-time chart on the vitals screen.
+	"""
+	query = """
+		SELECT recorded_at, mood_score, temperature_f, heart_rate_bpm
+		FROM vitals
+		WHERE visit_id = ?
+		ORDER BY recorded_at ASC
+	"""
+	return system.db.runPrepQuery(query, [visit_id], DB_CONNECTION)
+
+
+def add_note(visit_id, note_text, author="Dr. Lovie"):
+	"""Adds a free-text note for a visit. Wire this to the Form component's submit action."""
+	query = """
+		INSERT INTO visit_notes (visit_id, note_text, author)
+		VALUES (?, ?, ?)
+	"""
+	system.db.runPrepUpdate(query, [visit_id, note_text, author], DB_CONNECTION)
+
+
+def get_notes_for_visit(visit_id):
+	"""Returns all notes for one visit, newest first."""
+	query = """
+		SELECT note_id, note_text, author, created_at
+		FROM visit_notes
+		WHERE visit_id = ?
+		ORDER BY created_at DESC
+	"""
+	return system.db.runPrepQuery(query, [visit_id], DB_CONNECTION)
+
+
+def get_notes_for_patient(patient_id):
+	"""
+	Returns every note ever written for this patient, across all of their past
+	visits, newest first -- this is the "pull in past notes" behavior: scan a
+	wristband, and see what was written last time too, not just this stay.
+	"""
+	query = """
+		SELECT vn.note_id, vn.note_text, vn.author, vn.created_at,
+		       v.visit_id, v.checked_in_at
+		FROM visit_notes vn
+		JOIN visits v ON v.visit_id = vn.visit_id
+		WHERE v.patient_id = ?
+		ORDER BY vn.created_at DESC
+	"""
+	return system.db.runPrepQuery(query, [patient_id], DB_CONNECTION)
 
 
 def administer_medication(visit_id, medication_name, dose, method="tilt-administered"):

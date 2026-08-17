@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Patient",
+    "tagType": "UdtType",
+    "typeId": null,
+    "tags": [
+      {
+        "name": "heartRateBpm",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "eventScripts": [
+          {
+            "eventid": "valueChanged",
+            "script": "\tlogger \u003d system.util.getLogger(\"hospital.tagscripts\")\n\tlogger.info(\"valueChanged fired. initialChange\u003d%s currentValue\u003d%s\" % (initialChange, currentValue.value))\n\n\tif initialChange:\n\t\tlogger.info(\"Skipping initial change event.\")\n\t\treturn\n\n\tparent_path \u003d str(tagPath).rsplit(\"/\", 1)[0]\n\tresults \u003d system.tag.readBlocking([parent_path + \"/visitId\"])\n\tvisit_id \u003d results[0].value\n\tlogger.info(\"visit_id read as %s\" % visit_id)\n\n\tif visit_id and visit_id \u003e 0:\n\t\tlogger.info(\"Calling log_vitals for visit_id\u003d%s\" % visit_id)\n\t\thospital.patients.log_vitals(visit_id, None, None, currentValue.value)\n\telse:\n\t\tlogger.info(\"No active visit_id, skipping log_vitals call.\")"
+          }
+        ],
+        "name": "moodScore",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "dataType": "String",
+        "name": "name",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "name": "patientID",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "dataType": "String",
+        "name": "species",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "dataType": "String",
+        "name": "status",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "dataType": "Float4",
+        "name": "temperatureF",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      },
+      {
+        "name": "visitId",
+        "tagType": "AtomicTag",
+        "valueSource": "memory"
+      }
+    ]
+  }
+]

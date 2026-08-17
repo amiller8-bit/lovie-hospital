@@ -44,11 +44,27 @@ CREATE TABLE vitals (
     recorded_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
     temperature_f   NUMERIC(5,1),
     heart_rate_bpm  INTEGER,
-    mood            TEXT,     -- e.g. 'happy', 'sleepy', 'grumpy', 'scared' — button-driven, not free text, in the UI
-    notes           TEXT
+    mood_score      INTEGER CHECK (mood_score BETWEEN 1 AND 10)
+                    -- 1 = very sad face, 10 = very happy face. The Perspective screen
+                    -- maps face-button taps to this number; nothing stores "happy"/"sad" text.
 );
 
 CREATE INDEX idx_vitals_visit_id ON vitals(visit_id);
+
+-- ============================================================
+-- Visit notes: free-text notes entered via the Perspective Form component.
+-- Separate from vitals on purpose — a note isn't tied to a single reading,
+-- and this is what gets pulled up as "past notes" for a patient.
+-- ============================================================
+CREATE TABLE visit_notes (
+    note_id      SERIAL PRIMARY KEY,
+    visit_id     INTEGER NOT NULL REFERENCES visits(visit_id),
+    note_text    TEXT NOT NULL,
+    author       TEXT DEFAULT 'Dr. Lovie',
+    created_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX idx_visit_notes_visit_id ON visit_notes(visit_id);
 
 -- ============================================================
 -- Medications: administered during a visit (Phase 3 tilt-screen writes here)
