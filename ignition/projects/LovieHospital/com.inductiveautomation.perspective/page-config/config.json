@@ -1,5 +1,9 @@
 {
-  "pages": {},
+  "pages": {
+    "/": {
+      "viewPath": "MoodScopeTest"
+    }
+  },
   "sharedDocks": {
     "cornerPriority": "top-bottom"
   }
