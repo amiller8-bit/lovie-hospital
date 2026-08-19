@@ -5,27 +5,1285 @@
   "root": {
     "children": [
       {
-        "events": {
-          "dom": {
-            "onClick": {
-              "config": {
-                "script": "\thospital.patients.log_vitals(1, None, None, 8)\n\tsystem.perspective.print(\"Logged mood_score\u003d8 from a button click — Client/Session scope.\")"
-              },
-              "scope": "G",
-              "type": "script"
-            }
-          }
-        },
         "meta": {
-          "name": "Button"
+          "name": "Form"
         },
         "position": {
-          "height": 34,
-          "width": 80,
-          "x": 33,
-          "y": 25.80000000000001
+          "height": 554,
+          "width": 572
         },
-        "type": "ia.input.button"
+        "props": {
+          "actions": {
+            "submit": {
+              "fireSubmissionEvent": true,
+              "submissionHandler": "addPatientNote"
+            }
+          },
+          "columns": {
+            "align": "stretch",
+            "items": [
+              {
+                "rows": {
+                  "align": "start",
+                  "items": [
+                    {
+                      "align": "start",
+                      "enabled": true,
+                      "enabledWhen": {},
+                      "justify": "start",
+                      "style": {
+                        "classes": ""
+                      },
+                      "visible": true,
+                      "visibleWhen": {},
+                      "widgets": [
+                        {
+                          "checkbox": {
+                            "align": "center",
+                            "checkedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/check_box",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "indeterminateIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/indeterminate_check_box",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "triState": false,
+                                "value": ""
+                              }
+                            ],
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "type": "boolean",
+                            "uncheckedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/check_box_outline_blank",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "date-picker": {
+                            "defaultToNow": false,
+                            "dismissOnSelect": true,
+                            "displayType": "input",
+                            "format": "ll",
+                            "locale": "en",
+                            "maxDate": null,
+                            "minDate": null,
+                            "modalStyle": {
+                              "classes": ""
+                            },
+                            "placeholder": "Select date",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "date-time-picker": {
+                            "defaultToNow": false,
+                            "dismissOnSelect": true,
+                            "displayType": "input",
+                            "format": "lll",
+                            "locale": "en",
+                            "maxDate": null,
+                            "minDate": null,
+                            "modalStyle": {
+                              "classes": ""
+                            },
+                            "placeholder": "Select date",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "dropdown": {
+                            "allowCustomOptions": false,
+                            "maxMenuHeight": 350,
+                            "minMenuHeight": 150,
+                            "multiSelect": false,
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "isDisabled": false,
+                                "label": "",
+                                "value": ""
+                              }
+                            ],
+                            "placeholder": {
+                              "color": "",
+                              "icon": {
+                                "color": "",
+                                "path": "",
+                                "style": {
+                                  "height": "16px",
+                                  "width": "16px"
+                                }
+                              },
+                              "text": "Select..."
+                            },
+                            "search": {
+                              "enabled": false,
+                              "matching": "any",
+                              "noResultsText": "No results found",
+                              "searchParam": ""
+                            },
+                            "showClearIcon": true,
+                            "style": {
+                              "classes": ""
+                            },
+                            "textAlign": "left",
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "wrapMultiSelectValues": true
+                          },
+                          "email": {
+                            "autoComplete": "",
+                            "multiple": false,
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "enabled": true,
+                          "file-upload": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "fileSizeLimit": {
+                                  "value": 10
+                                },
+                                "maxUploads": {
+                                  "enabled": true,
+                                  "value": 5
+                                },
+                                "required": {
+                                  "enabled": false
+                                },
+                                "supportedFileTypes": {
+                                  "enabled": false,
+                                  "value": []
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "id": "header",
+                          "info": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "Sub text description.",
+                            "tooltip": {
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "location": "above",
+                              "maxWidth": 360,
+                              "pixelOffset": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "style": {
+                                "classes": ""
+                              },
+                              "tail": true
+                            },
+                            "type": "caption"
+                          },
+                          "label": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "Patient Notes"
+                          },
+                          "layout": "column",
+                          "number": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "max": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "min": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "required": {
+                                  "enabled": false
+                                },
+                                "step": {
+                                  "enabled": false,
+                                  "value": ""
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "password": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "radio": {
+                            "align": "center",
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "value": "value"
+                              }
+                            ],
+                            "selectedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/radio_button_checked",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "unselectedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/radio_button_unchecked",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "readOnly": false,
+                          "slider": {
+                            "handleColor": "",
+                            "labels": {
+                              "interval": 20,
+                              "show": false
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "railColor": "",
+                            "step": 1,
+                            "style": {
+                              "classes": ""
+                            },
+                            "trackColor": ""
+                          },
+                          "style": {
+                            "classes": ""
+                          },
+                          "tabIndex": 0,
+                          "tel": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "text": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "text-area": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "spellCheck": true,
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "wrap": "soft"
+                          },
+                          "time-picker": {
+                            "defaultToNow": false,
+                            "format": "LT",
+                            "locale": "en",
+                            "maxTime": null,
+                            "minTime": null,
+                            "showSpinners": true,
+                            "style": {
+                              "classes": ""
+                            }
+                          },
+                          "toggle": {
+                            "align": "center",
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            },
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "value": ""
+                              }
+                            ],
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "type": "boolean",
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "type": "none",
+                          "url": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "visible": true
+                        }
+                      ]
+                    },
+                    {
+                      "align": "start",
+                      "enabled": true,
+                      "enabledWhen": {},
+                      "justify": "start",
+                      "style": {
+                        "classes": ""
+                      },
+                      "visible": true,
+                      "visibleWhen": {},
+                      "widgets": [
+                        {
+                          "checkbox": {
+                            "align": "center",
+                            "checkedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/check_box",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "indeterminateIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/indeterminate_check_box",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "triState": false,
+                                "value": ""
+                              }
+                            ],
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "type": "boolean",
+                            "uncheckedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/check_box_outline_blank",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "date-picker": {
+                            "defaultToNow": false,
+                            "dismissOnSelect": true,
+                            "displayType": "input",
+                            "format": "ll",
+                            "locale": "en",
+                            "maxDate": null,
+                            "minDate": null,
+                            "modalStyle": {
+                              "classes": ""
+                            },
+                            "placeholder": "Select date",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "date-time-picker": {
+                            "defaultToNow": false,
+                            "dismissOnSelect": true,
+                            "displayType": "input",
+                            "format": "lll",
+                            "locale": "en",
+                            "maxDate": null,
+                            "minDate": null,
+                            "modalStyle": {
+                              "classes": ""
+                            },
+                            "placeholder": "Select date",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "dropdown": {
+                            "allowCustomOptions": false,
+                            "maxMenuHeight": 350,
+                            "minMenuHeight": 150,
+                            "multiSelect": false,
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "isDisabled": false,
+                                "label": "",
+                                "value": ""
+                              }
+                            ],
+                            "placeholder": {
+                              "color": "",
+                              "icon": {
+                                "color": "",
+                                "path": "",
+                                "style": {
+                                  "height": "16px",
+                                  "width": "16px"
+                                }
+                              },
+                              "text": "Select..."
+                            },
+                            "search": {
+                              "enabled": false,
+                              "matching": "any",
+                              "noResultsText": "No results found",
+                              "searchParam": ""
+                            },
+                            "showClearIcon": true,
+                            "style": {
+                              "classes": ""
+                            },
+                            "textAlign": "left",
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "wrapMultiSelectValues": true
+                          },
+                          "email": {
+                            "autoComplete": "",
+                            "multiple": false,
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "enabled": true,
+                          "file-upload": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "fileSizeLimit": {
+                                  "value": 10
+                                },
+                                "maxUploads": {
+                                  "enabled": true,
+                                  "value": 5
+                                },
+                                "required": {
+                                  "enabled": false
+                                },
+                                "supportedFileTypes": {
+                                  "enabled": false,
+                                  "value": []
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "id": "noteText",
+                          "info": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "Sub text description.",
+                            "tooltip": {
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "location": "above",
+                              "maxWidth": 360,
+                              "pixelOffset": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "style": {
+                                "classes": ""
+                              },
+                              "tail": true
+                            },
+                            "type": "caption"
+                          },
+                          "label": {
+                            "style": {
+                              "classes": ""
+                            },
+                            "text": "Label"
+                          },
+                          "layout": "column",
+                          "number": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "max": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "min": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "required": {
+                                  "enabled": false
+                                },
+                                "step": {
+                                  "enabled": false,
+                                  "value": ""
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "password": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "radio": {
+                            "align": "center",
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "value": "value"
+                              }
+                            ],
+                            "selectedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/radio_button_checked",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "unselectedIcon": {
+                              "color": {
+                                "disabled": "",
+                                "enabled": ""
+                              },
+                              "path": "material/radio_button_unchecked",
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "readOnly": false,
+                          "slider": {
+                            "handleColor": "",
+                            "labels": {
+                              "interval": 20,
+                              "show": false
+                            },
+                            "max": 100,
+                            "min": 0,
+                            "railColor": "",
+                            "step": 1,
+                            "style": {
+                              "classes": ""
+                            },
+                            "trackColor": ""
+                          },
+                          "style": {
+                            "classes": ""
+                          },
+                          "tabIndex": 0,
+                          "tel": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "text": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "text-area": {
+                            "autoComplete": "on",
+                            "placeholder": "",
+                            "spellCheck": true,
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            },
+                            "wrap": "soft"
+                          },
+                          "time-picker": {
+                            "defaultToNow": false,
+                            "format": "LT",
+                            "locale": "en",
+                            "maxTime": null,
+                            "minTime": null,
+                            "showSpinners": true,
+                            "style": {
+                              "classes": ""
+                            }
+                          },
+                          "toggle": {
+                            "align": "center",
+                            "color": {
+                              "selected": "",
+                              "unselected": ""
+                            },
+                            "justify": "start",
+                            "layout": "row",
+                            "optionStyle": {
+                              "classes": ""
+                            },
+                            "options": [
+                              {
+                                "text": "text",
+                                "value": ""
+                              }
+                            ],
+                            "style": {
+                              "classes": ""
+                            },
+                            "textPosition": "right",
+                            "type": "boolean",
+                            "validation": {
+                              "constraints": {
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "type": "text-area",
+                          "url": {
+                            "autoComplete": "",
+                            "placeholder": "",
+                            "style": {
+                              "classes": ""
+                            },
+                            "validation": {
+                              "constraints": {
+                                "maxLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "minLength": {
+                                  "enabled": false,
+                                  "value": null
+                                },
+                                "pattern": {
+                                  "enabled": false,
+                                  "value": ""
+                                },
+                                "required": {
+                                  "enabled": false
+                                }
+                              },
+                              "icon": {
+                                "color": "",
+                                "path": ""
+                              },
+                              "message": {},
+                              "style": {
+                                "classes": ""
+                              }
+                            }
+                          },
+                          "visible": true
+                        }
+                      ]
+                    }
+                  ],
+                  "justify": "start",
+                  "style": {
+                    "classes": ""
+                  }
+                },
+                "style": {
+                  "classes": ""
+                },
+                "visible": true
+              }
+            ]
+          },
+          "name": "patientNotes"
+        },
+        "type": "ia.input.form"
       }
     ],
     "meta": {

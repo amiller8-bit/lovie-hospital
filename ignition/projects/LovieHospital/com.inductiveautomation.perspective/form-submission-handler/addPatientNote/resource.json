@@ -4,13 +4,14 @@
   "restricted": false,
   "overridable": true,
   "files": [
-    "config.json"
+    "handleSubmission.py"
   ],
   "attributes": {
-    "lastModificationSignature": "6456cf9c204d74c5398d81edfb8ade8d088d51870cac1dbfc0670179292e9580",
+    "lastModificationSignature": "e4f9fd25e162a67dc2dd73c6ebc0b9fa5ae71a41abae042dedb2d69ea05498f7",
     "lastModification": {
       "actor": "admin",
       "timestamp": "2026-08-18T03:39:03Z"
-    }
+    },
+    "enabled": true
   }
 }
